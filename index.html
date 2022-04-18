@@ -4,6 +4,11 @@
     <meta charset="utf-8" />
     <title>Conduit</title>
     <meta content="width=device-width" name="viewport" />
+    <!-- Enable Trusted Types, we need "allow-duplicates" due to how vite hot reloading works -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="require-trusted-types-for 'script'; trusted-types solid-dom-expressions trusted-article vite-overlay 'allow-duplicates';"
+    />
     <!-- Import Ionicon icons & Google Fonts our Bootstrap theme relies on -->
     <link
       href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"

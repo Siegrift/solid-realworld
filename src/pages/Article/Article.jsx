@@ -4,7 +4,7 @@ import { useStore } from "../../store";
 
 import Comments from "./Comments";
 
-const ArticleMeta = props => (
+const ArticleMeta = (props) => (
   <div class="article-meta">
     <NavLink href={`@${props.article?.author.username}`} route="profile">
       <img src={props.article?.author.image} alt="" />
@@ -41,6 +41,13 @@ export default ({ slug }) => {
       store.currentUser && store.currentUser.username === article()?.author.username,
     handleDeleteArticle = () => deleteArticle(slug).then(() => (location.hash = "/"));
 
+  let articlePolicy;
+  if (window.trustedTypes) {
+    // We are Trusting the article content to be safe and our policy allows all of these.
+    // (This is hardly secure in real world applications)
+    articlePolicy = window.trustedTypes.createPolicy("trusted-article", { createHTML: (s) => s });
+  }
+
   return (
     <div class="article-page">
       <div class="banner">
@@ -53,10 +60,14 @@ export default ({ slug }) => {
       <div class="container page">
         <div class="row article-content">
           <div class="col-xs-12">
-            <div innerHTML={article() && marked(article()?.body, { sanitize: true })} />
+            <div
+              innerHTML={articlePolicy.createHTML(
+                article() ? marked(article()?.body, { sanitize: true }) : "Not found"
+              )}
+            />
 
             <ul class="tag-list">
-              {article()?.tagList.map(tag => (
+              {article()?.tagList.map((tag) => (
                 <li class="tag-default tag-pill tag-outline">{tag}</li>
               ))}
             </ul>
