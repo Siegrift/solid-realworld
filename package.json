@@ -4,10 +4,11 @@
   "description": "A Solid Implementation of the Realworld Example App",
   "main": "public/index.js",
   "scripts": {
-    "start": "vite",
-    "dev": "vite",
     "build": "vite build",
+    "dev": "vite",
+    "format": "prettier --write ./**/*.{js,jsx,html,md}",
     "serve": "vite preview",
+    "start": "vite",
     "test": "test"
   },
   "repository": {
@@ -30,6 +31,7 @@
     "solid-js": "file:../solid/packages/solid"
   },
   "devDependencies": {
+    "prettier": "^2.6.2",
     "vite": "file:../vite/packages/vite",
     "vite-plugin-solid": "^2.2.6"
   }
