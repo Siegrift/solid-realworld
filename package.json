@@ -5,6 +5,8 @@
   "main": "public/index.js",
   "scripts": {
     "build": "vite build",
+    "cypress:open": "yarn cypress open",
+    "cypress:run": "yarn cypress run",
     "dev": "vite",
     "format": "prettier --write ./**/*.{js,jsx,html,md}",
     "serve": "vite preview",
@@ -30,6 +32,8 @@
     "solid-js": "file:../solid/packages/solid"
   },
   "devDependencies": {
+    "@siegrift/cypress-trusted-types": "^0.2.1",
+    "cypress": "^9.5.4",
     "prettier": "^2.6.2",
     "vite": "file:../vite/packages/vite",
     "vite-plugin-solid": "^2.2.6"
