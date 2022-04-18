@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Article from "./pages/Article";
 import Profile from "./pages/Profile";
 import Editor from "./pages/Editor";
+import UnsafeInterpolation from "./pages/UnsafeInterpolation";
 
 const Settings = lazy(() => import("./pages/Settings")),
   Auth = lazy(() => import("./pages/Auth"));
@@ -43,6 +44,9 @@ export default () => {
             </Match>
             <Match when={match("profile", /^@([^/]*)\/?(favorites)?/)}>
               <Profile {...getParams()} />
+            </Match>
+            <Match when={match("unsafe", /^unsafe/)}>
+              <UnsafeInterpolation {...getParams()} />
             </Match>
             <Match when={match("", /^#?$/)}>
               <Home />
